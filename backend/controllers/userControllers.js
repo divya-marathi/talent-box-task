@@ -4,9 +4,7 @@ const bcrypt = require("bcrypt");
 const { OAuth2Client } = require("google-auth-library");
 const { response } = require("express");
 
-const client = new OAuth2Client(
-  "1054313674399-0rd1oavdh8limfcqh8gffvi20q1grq32"
-);
+
 const login = async (req, res) => {
   const { email, password, isGoogleSigning, name } = req.body;
 
@@ -82,19 +80,6 @@ const signin = async (req, res) => {
   }
 };
 
-const googleSignIn = async (req, res) => {
-  const { tokenId } = req.body;
 
-  client
-    .verifyIdToken({
-      idToken: tokenId,
-      audience:
-        "547636078489-kfggsb7h20h7l82qihkg7ik0mnl6tgte.apps.googleusercontent.com ",
-    })
-    .then((response) => {
-      const { email_verified, name, email } = response.payload;
-      console.log(response.payload);
-    });
-};
 
-module.exports = { login, signin, googleSignIn };
+module.exports = { login, signin };
