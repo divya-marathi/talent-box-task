@@ -26,7 +26,7 @@ function Signin() {
   const handleSubmit = async (event) => {
     //Prevent page reload
     event.preventDefault();
-    let response = await axios.post("/signin", {
+    let response = await axios.post("https://talent-box-task.onrender.com/signin", {
       email: user.email,
       password: user.password,
     });

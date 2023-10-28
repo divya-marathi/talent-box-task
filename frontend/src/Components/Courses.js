@@ -6,7 +6,7 @@ function Courses() {
   const [category, setCategory] = useState([]);
   useEffect(() => {
     const getCourses = async () => {
-      const res = await axios.post("/courses", {
+      const res = await axios.post("https://talent-box-task.onrender.com/courses", {
         token: localStorage.getItem("token"),
       });
       setCategory(res.data);
