@@ -17,7 +17,7 @@ function Courses() {
 
   return (
     <div>
-      <section className="h-screen  bg-gray-50 flex justify-center ">
+      <section className="h-full   bg-gray-50 flex justify-center ">
         <div className="text-center mt-8 w-[30%]">
           <h3 className="text font-medium text-md">
             WelCome to FreeCodeCamp.org
@@ -30,9 +30,10 @@ function Courses() {
           <div>
             {category.map((items) => {
               return (
-                <div className="h-10 pl-2 border-gray-800 bg-gray-200 mt-2 text-left text-sm border border-dark-200">
+                <div className="h-10 pl-2 shadow-sm border-gray-800 bg-gray-200 mt-2 text-left text-sm border border-dark-200">
+                  <a href="#">
                   <span>{items.title}</span>
-                  <span>{items.duration}</span>
+                  <span>{items.duration}</span></a>
                 </div>
               );
             })}

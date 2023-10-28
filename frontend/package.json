@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy":"https://talent-box-task.onrender.com/",
+  "proxy":"http://localhost:5000/",  
   "private": true,
   "dependencies": {
     "@material-tailwind/react": "^2.1.4",
