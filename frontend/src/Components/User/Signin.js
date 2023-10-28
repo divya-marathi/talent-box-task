@@ -60,7 +60,7 @@ function Signin() {
     try {
       if (data.email_verified) {
         alert("Google Signin success");
-        let response = await axios.post("/login", {
+        let response = await axios.post("https://talent-box-task.onrender.com/login", {
           email: data.email,
           password: token,
           isGoogleSigning:true,
