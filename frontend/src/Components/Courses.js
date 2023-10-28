@@ -6,7 +6,7 @@ function Courses() {
   const [category, setCategory] = useState([]);
   useEffect(() => {
     const getCourses = async () => {
-      const res = await axios.post("http://localhost:5000/courses", {
+      const res = await axios.post("/courses", {
         token: localStorage.getItem("token"),
       });
       // console.log(res.data);

@@ -16,7 +16,7 @@ function Navigator() {
   }, [navigate]);
 const searchHandler=async(e)=>{
   setTitle(e.target.value)
-let res=await axios.post('http://localhost:5000/search',{title:title})
+let res=await axios.post('/search',{title:title})
 console.log(res.data)
 }
   const logout = () => {

@@ -26,7 +26,7 @@ function Signin() {
   const handleSubmit = async (event) => {
     //Prevent page reload
     event.preventDefault();
-    let response = await axios.post("http://localhost:5000/signin", {
+    let response = await axios.post("/signin", {
       email: user.email,
       password: user.password,
     });
@@ -60,7 +60,7 @@ function Signin() {
     try {
       if (data.email_verified) {
         alert("Google Signin success");
-        let response = await axios.post("http://localhost:5000/login", {
+        let response = await axios.post("/login", {
           email: data.email,
           password: token,
           isGoogleSigning:true,
