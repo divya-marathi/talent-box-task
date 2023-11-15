@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Courses() {
   const [category, setCategory] = useState([]);
@@ -29,12 +30,12 @@ function Courses() {
             {category.map((items, index) => (
               <div
                 key={index}
-                className="pl-2 shadow-sm border-gray-800 bg-gray-200 mt-2 text-left text-sm border border-dark-200"
+                className="pl-2 py-3  shadow-sm border-gray-800 bg-gray-200 mt-3 text-left text-sm border border-dark-200"
               >
-                <a href="#">
-                  <span className="text-xs md:text-sm">{items.title}</span>
+                <Link to="/courseDetails">
+                  <span className="text-sm md:text-md font-semibold">{items.title}</span>
                   <span className="text-xs md:text-sm">{items.duration}</span>
-                </a>
+                </Link>
               </div>
             ))}
           </div>

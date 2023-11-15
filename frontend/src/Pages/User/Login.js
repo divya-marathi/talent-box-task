@@ -8,6 +8,7 @@ function Login() {
   const navigate = useNavigate();
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -17,8 +18,8 @@ function Login() {
     uname: "invalid username",
     pass: "invalid password",
   };
-  const handleSubmit = async (event) => {
-    //Prevent page reload
+  
+  const handleSubmit = async (event) => {   
     event.preventDefault();
     let response = await axios.post("https://talent-box-task.onrender.com/login", {
       email: user.email,
@@ -35,11 +36,7 @@ function Login() {
     }
   };
 
-  // Generate JSX code for error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
+  
   return (
     <div className=" pt-20  dark:bg-neutral-700 ">
       <div className="  max-w-sm rounded-lg bg-white p-6 m-auto shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">

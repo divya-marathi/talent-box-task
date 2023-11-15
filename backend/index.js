@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const coursesRouter = require("./router/route");
 require("dotenv").config();
 const cors = require("cors");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { insertData } = require("./coursesData/courseData");
 
@@ -16,34 +15,29 @@ const PORT = process.env.PORT || 5000;
 // Routing Area
 app.use(cors());
 app.use(express.json());
- 
+
 // Middlewares
 app.use("/", coursesRouter);
 
-app.get('/', async (req, res) => {
+app.get("/", async (req, res) => {
   try {
-     insertData(); 
-    res.send("Data inserted successfully"); 
+    insertData();
+    res.send("Data inserted successfully");
   } catch (error) {
-    res.status(500).send(`Error inserting data: ${error.message}`); 
+    res.status(500).send(`Error inserting data: ${error.message}`);
   }
-}); 
-
-
+});
 
 const ConnectionDb = async () => {
   mongoose
     .connect(process.env.mongo_url)
     .then(() => {
       console.log("Mongodb Connected");
-      
     })
     .catch((err) => console.log("mongodb is not connected"));
 };
 ConnectionDb();
 
-
 app.listen(PORT, () => {
   console.log(`app is running on ${PORT}`);
 });
-

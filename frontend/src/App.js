@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import HomePage from "./Components/HomePage";
-import Login from "./Components/User/Login";
-import Signin from "./Components/User/Signin";
+import HomePage from "./Pages/HomePage";
+import Login from "./Pages/User/Login";
+import Signin from "./Pages/User/Signin";
 import Navigator from "./Components/Navigator";
-import Courses from "./Components/Courses";
+import Courses from "./Pages/Courses";
 import FreeCoursesProtection from "./Components/FreeCoursesProtection";
-import { GoogleOAuthProvider } from '@react-oauth/google';
-
+import CoursesDetails from "./Pages/CoursesDetails";
+import EnrollPage from "./Pages/EnrollCourses";
 
 function App() {
   return (
@@ -22,6 +22,8 @@ function App() {
               path="/courses"
               element={<FreeCoursesProtection children={<Courses />} />}
             />
+            <Route path="/courseDetails" element={<CoursesDetails />} />
+            <Route path="/enroll" element={<EnrollPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

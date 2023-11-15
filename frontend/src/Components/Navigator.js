@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { FaMagnifyingGlass, FaAtlassian } from "react-icons/fa6";
 import axios from "axios";
+
+
 function Navigator() {
+  
   const [title, setTitle] = useState();
   const navigate = useNavigate();
   let token = localStorage.getItem("token");
   const [isLogged, setIslogged] = useState(true);
+
   useEffect(() => {
     if (token) {
       setIslogged(true);
@@ -14,10 +18,12 @@ function Navigator() {
       setIslogged(false);
     }
   }, [navigate]);
+
   const searchHandler = async (e) => {
     setTitle(e.target.value);
     let res = await axios.post("https://talent-box-task.onrender.com/search", { title: title });
     console.log(res.data);
+    
   };
   const logout = () => {
     localStorage.removeItem("token");

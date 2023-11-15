@@ -9,7 +9,7 @@ const login = async (req, res) => {
     const existUser = await userModel.findOne({ email, password });
     if (existUser) {
       const token = jwt.sign({ userId: existUser._id }, "secretKey", {
-        expiresIn: "1h",
+        expiresIn: "7d",
       });
       return res.status(202).json({
         status: true,
@@ -19,7 +19,6 @@ const login = async (req, res) => {
       });
     } else {
       if (isGoogleSigning) {
-        //
         const newUser = new userModel({
           email,
           password,
@@ -54,7 +53,7 @@ const signin = async (req, res) => {
         .status(204)
         .json({ status: false, message: "Email id already exists" });
     }
-
+    //if email not present
     const newUser = new userModel({
       email,
       password,
@@ -62,7 +61,9 @@ const signin = async (req, res) => {
     });
 
     await newUser.save();
-    const token = jwt.sign({ userId: newUser._id }, "secretKey", {
+
+    //generate token using jwt
+    const token = jwt.sign({ userId: newUser._id }," secretKey", {
       expiresIn: "7d",
     });
 

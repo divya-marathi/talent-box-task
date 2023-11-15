@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TEInput, TERipple } from "tw-elements-react";
 import { useState } from "react";
 import axios from "axios";
@@ -9,32 +9,33 @@ import { useGoogleLogin } from "@react-oauth/google";
 function Signin() {
   const navigate = useNavigate();
   const [errorMessages, setErrorMessages] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
   });
-  const [userId, setUserId] = useState("");
-  const [userName, setUserName] = useState("");
 
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
-  };
+  // const errors = {
+  //   uname: "invalid username",
+  //   pass: "invalid password",
+  // };
+
   const handleSubmit = async (event) => {
     //Prevent page reload
     event.preventDefault();
-    let response = await axios.post("https://talent-box-task.onrender.com/signin", {
-      email: user.email,
-      password: user.password,
-    });
-    if (response.status == 204) {
+    let response = await axios.post(
+      "https://talent-box-task.onrender.com/signin",
+      {
+        email: user.email,
+        password: user.password,
+      }
+    );
+    if (response.status === 204) {
       setErrorMessages(true);
       return;
     }
-    if (response.status == 202) {
+    if (response.status === 202) {
       alert("Registration success");
       console.log(response.data.token);
       window.localStorage.setItem("token", response.data.token);
@@ -43,6 +44,7 @@ function Signin() {
       alert("try again");
     }
   };
+
   const retriveGoogleData = async (token) => {
     try {
       const res = await axios.get(
@@ -54,18 +56,22 @@ function Signin() {
       throw new Error(error);
     }
   };
+
   const successsLogin = async (token) => {
     const data = await retriveGoogleData(token);
     console.log(data);
     try {
       if (data.email_verified) {
         alert("Google Signin success");
-        let response = await axios.post("https://talent-box-task.onrender.com/login", {
-          email: data.email,
-          password: token,
-          isGoogleSigning:true,
-          name:data.name
-        });
+        let response = await axios.post(
+          "https://talent-box-task.onrender.com/login",
+          {
+            email: data.email,
+            password: token,
+            isGoogleSigning: true,
+            name: data.name,
+          }
+        );
         window.localStorage.setItem("token", response.data.token);
         navigate("/courses");
       } else {
